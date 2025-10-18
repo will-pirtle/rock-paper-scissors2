@@ -1,3 +1,11 @@
+const playerChoiceBtns = document.querySelectorAll("button");
+
+playerChoiceBtns.forEach((button) => {
+  button.addEventListener('click', (e) => {
+    const playerChoice = e.target.id;
+    playRound(playerChoice, getComputerChoice());
+  });
+})
 
 // Get computer choice
 function getComputerChoice() {
@@ -13,26 +21,29 @@ function getComputerChoice() {
 }
 
 // Get human choice
-function getPlayerChoice() {
-  let playerChoice = prompt("Choose your weapon: (Rock, Paper, or Scissors)").toLowerCase();
-  return playerChoice;
-}
+// function getPlayerChoice() {
+//   let playerChoice = prompt("Choose your weapon: (Rock, Paper, or Scissors)").toLowerCase();
+//   return playerChoice;
+// }
 
 // Play a single round
 function playRound(playerChoice, computerChoice) {
   // Check for tie, player win, or computer win and return the result
   if (playerChoice === computerChoice) {
     // tie
-    return 'tie';
+    console.log('tie');
+    // return 'tie';
   } else if (
               (playerChoice === 'rock' && computerChoice === 'scissors') ||
               (playerChoice === 'paper' && computerChoice === 'rock') ||
               (playerChoice === 'scissors' && computerChoice === 'paper')
             ) {
-      return 'player';
+      console.log("player");
+      // return 'player';
   } else {
       // computer win
-      return 'computer';
+      console.log("computer");
+      // return 'computer';
   }
 }
 
