@@ -1,9 +1,21 @@
 const playerChoiceBtns = document.querySelectorAll("button");
+const messageBox = document.querySelector(".game-msg-container");
+const playerScore = document.querySelector(".player-score > .score-txt");
+const computerScore = document.querySelector(".computer-score > .score-txt");
 
 playerChoiceBtns.forEach((button) => {
   button.addEventListener('click', (e) => {
     const playerChoice = e.target.id;
-    playRound(playerChoice, getComputerChoice());
+    let roundWinner = playRound(playerChoice, getComputerChoice());
+    if (roundWinner == 'player') {
+      playerScore.textContent = Number(playerScore.textContent) + 1;
+      messageBox.textContent = "You win!";
+    } else if (roundWinner == 'computer') {
+      computerScore.textContent = Number(computerScore.textContent) + 1;
+      messageBox.textContent = "You lose...";
+    } else if (roundWinner == 'tie') {
+      messageBox.textContent = "Draw. Try again.";
+    }
   });
 })
 
@@ -20,30 +32,22 @@ function getComputerChoice() {
   }
 }
 
-// Get human choice
-// function getPlayerChoice() {
-//   let playerChoice = prompt("Choose your weapon: (Rock, Paper, or Scissors)").toLowerCase();
-//   return playerChoice;
-// }
-
 // Play a single round
 function playRound(playerChoice, computerChoice) {
   // Check for tie, player win, or computer win and return the result
   if (playerChoice === computerChoice) {
     // tie
-    console.log('tie');
-    // return 'tie';
+    return 'tie';
   } else if (
               (playerChoice === 'rock' && computerChoice === 'scissors') ||
               (playerChoice === 'paper' && computerChoice === 'rock') ||
               (playerChoice === 'scissors' && computerChoice === 'paper')
             ) {
-      console.log("player");
-      // return 'player';
+    
+    return 'player';
   } else {
-      // computer win
-      console.log("computer");
-      // return 'computer';
+    // computer win
+    return 'computer';
   }
 }
 
