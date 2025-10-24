@@ -16,6 +16,17 @@ playerChoiceBtns.forEach((button) => {
     } else if (roundWinner == 'tie') {
       messageBox.textContent = "Draw. Try again.";
     }
+
+    // check for game win
+    if (playerScore.textContent == 5) {
+      alert("Game over. YOU WON!");
+      playerScore.textContent = 0;
+      computerScore.textContent = 0;
+    } else if (computerScore.textContent == 5) {
+      alert("Game over. You lost.");
+      playerScore.textContent = 0;
+      computerScore.textContent = 0;
+    }
   });
 })
 
